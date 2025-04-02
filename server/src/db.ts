@@ -6,8 +6,19 @@ const pool = new Pool({
   user: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
-  port: parseInt(process.env.POSTGRES_PORT || '5432') ,
+  port: parseInt(process.env.POSTGRES_PORT || '5432'),
   idleTimeoutMillis: 30000,
 });
 
 export default pool;
+
+export const createTable = async () => {
+
+  const createTable = `CREATE TABLE IF NOT EXISTS students (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NUll,
+    grade INTEGER NOT NULL) `;
+
+  return pool.query(createTable);
+
+}

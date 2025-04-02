@@ -1,11 +1,13 @@
 # Future considerations
-* List of valid values for grades
-* Pagination
-* Start db / create table 
-* don't startup app unless db connection exists
-* Routes for delete, update
-* tests
-* frontend for list, create, delete, edit
-* rename student_name to name
-* Remove placeholder vite things
+* Validate input in frontend
 * Validate input in handlers
+* API security / input 
+* Routes for delete, update
+* Frontend for delete, update
+* List of valid values for grades, does this vary by country? 
+* What value do you use for kindergarten? 
+* Pagination
+* Remove placeholder vite things
+* Improve UX/Add Theming
+* Write a lot of tests 
+* Enhance list endpoint/frontend to support search 

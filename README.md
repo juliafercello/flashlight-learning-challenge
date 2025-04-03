@@ -9,5 +9,17 @@
 * Pagination
 * Remove placeholder vite things
 * Improve UX/Add Theming
-* Write a lot of tests 
 * Enhance list endpoint/frontend to support search 
+* Write a lot of tests
+    - Client tests:
+        - List page happy path
+        - List page get request fails
+        - client utils
+        - create student happy path
+        - create student failure 
+        - create student validation
+    - Server tests:
+        - Error scenarios for handlers
+        - Error middleware
+        - utils file
+        - router

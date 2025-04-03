@@ -1,6 +1,7 @@
 import pool from "../db";
 
 interface IStudent {
+    id: number
     name: string
     grade: number
 }

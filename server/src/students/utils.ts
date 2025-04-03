@@ -20,3 +20,14 @@ export const getStudents = async (): Promise<IStudent[] | undefined> => {
     const students = result.rows;
     return students;
 }
+
+export const getStudentByID = async (id: number): Promise<IStudent | undefined> => {
+    const result = await pool.query("SELECT * FROM students WHERE ID = ($1)", [id]);
+    const student = result.rows[0];
+    return student;
+}
+
+export const deleteStudentByID = async (id: number): Promise<boolean> => {
+    const result = await pool.query("DELETE FROM students WHERE ID = ($1)", [id]);
+    return (result.rowCount || 0) > 0;
+}

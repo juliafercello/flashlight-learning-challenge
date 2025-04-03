@@ -1,5 +1,5 @@
-import { createNewStudentHandler, getStudentsHandler } from "../../src/students/handlers"
-import { createStudent, getStudents } from "../../src/students/utils"
+import { createNewStudentHandler, deleteStudentsHandler, getStudentsHandler } from "../../src/students/handlers"
+import { createStudent, deleteStudentByID, getStudentByID, getStudents } from "../../src/students/utils"
 
 jest.mock('../../src/students/utils')
 
@@ -99,5 +99,36 @@ describe('Student handler tests', () => {
         expect(mockRes.json).not.toHaveBeenCalled()
         expect(mockNext).toHaveBeenCalled();
         expect(mockNext).toHaveBeenCalledWith('nope')
+    })
+
+    test('deleteStudentSHandler deletes student', async () => {
+        //@ts-ignore
+        getStudentByID.mockReturnValue(Promise.resolve({
+            "id": 3,
+            "name": "Pink Cat",
+            "grade": 2
+        }))
+
+        //@ts-ignore
+        deleteStudentByID.mockReturnValue(Promise.resolve(true))
+
+        const mockReq = { params: { id: 3 } };
+        const mockRes = {
+            status: jest.fn(),
+            json: jest.fn(),
+        };
+        const mockNext = jest.fn();
+
+        const handler = deleteStudentsHandler();
+
+        //@ts-ignore
+        await handler(mockReq, mockRes, mockNext);
+
+        expect(getStudentByID).toHaveBeenCalledTimes(1)
+        expect(getStudentByID).toHaveBeenCalledWith(3)
+        expect(deleteStudentByID).toHaveBeenCalledTimes(1)
+        expect(deleteStudentByID).toHaveBeenCalledWith(3)
+        expect(mockRes.status).toHaveBeenCalledWith(204);
+        expect(mockNext).not.toHaveBeenCalled();
     })
 })
